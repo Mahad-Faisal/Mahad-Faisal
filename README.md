@@ -1,17 +1,58 @@
-<h1 align="center">Hi 👋, I'm Mahad Faisal</h1>
-<h3 align="center">A passionate computer engineering student</h3>
+<h1 align="center">Mahad Faisal</h1>
+<h3 align="center">
+Embedded Firmware | RTOS | Motor Control | Battery Estimation | Edge AI
+</h3>
 
-- 🔭 I’m currently working on **Robust and Risk-aware Planning for Autonomous Vehicles**
+Computer Engineering student at Drexel University focused on low-level embedded systems, real-time firmware, signal processing, and embedded estimation algorithms.
 
-- 🌱 I’m currently learning **MATLAB**
+---
 
-- 👨‍💻 All of my projects are available on my github profile
+## Current Work
 
-- 📫 How to reach me **mahad.faisal@gmail.com**
+### Adaptive Battery Management System (RA8M1 + FreeRTOS)
+- Building an embedded Adaptive Dual Extended Kalman Filter (ADEKF) battery estimator on the Renesas EK-RA8M1 (Cortex-M85)
+- Real-time electrothermal battery plant simulation running on ESP32 communicating over CAN 2.0
+- 5-state electrothermal 2RC ECM with coupled thermal dynamics
+- Real-time estimation of:
+  - State of Charge (SoC)
+  - RC polarization voltages
+  - thermal states
+  - adaptive parameter correction
+- Embedded telemetry + UART logging infrastructure for HIL validation
+- HPPC validation:
+  - 5.31 mV RMS @ 25°C
+  - 6.95 mV RMS @ 10°C
+  - 8.98 mV RMS @ 0°C
+- Corrected real UDDS validation:
+  - 10.94 mV raw RMS
+  - 10.21 mV bias-corrected RMS
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+---
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+## Embedded Systems Interests
+- Zephyr RTOS
+- FreeRTOS
+- Renesas RA/RX platforms
+- ADC/DMA pipelines
+- UART/SPI/I2C/CAN
+- Motor control and inverter firmware
+- Embedded signal processing
+- State estimation and Kalman filtering
+- Cortex-M85 / Arm Helium
+- CI/CD for embedded firmware
+
+---
+
+## Technologies
+C • C++ • Python • MATLAB • FreeRTOS • Zephyr • CAN 2.0 • Git • CMake • Ninja • Jenkins • Linux • Renesas e² studio
+
+---
+
+## Current Open Source Work
+- Contributing to Zephyr RTOS
+- Improving Renesas RA8M1 board/sample support
+- Exploring Cortex-M85 CMSIS-DSP and Helium acceleration paths
+
+---
+
+📫 mahad.faisal@gmail.com
