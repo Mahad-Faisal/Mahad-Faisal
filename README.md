@@ -13,7 +13,7 @@ Previously worked as an Embedded Firmware Engineer Co-op (Jan - Sep 25) at Rheem
 ## Current Work
 
 ### Adaptive Battery Management System (RA8M1 + FreeRTOS)
-- Building an embedded Adaptive Dual Extended Kalman Filter (ADEKF) battery estimator on the Renesas EK-RA8M1 (Cortex-M85)
+- Building an embedded Adaptive Dual Extended Kalman Filter (ADEKF) battery estimator on the Renesas EK-RA8M1 (Cortex-M85). Uses NN based innovation correction using MVE and CMSIS NN optimization.
 - Real-time electrothermal battery plant simulation running on ESP32 communicating over CAN 2.0
 - 5-state electrothermal 2RC ECM with coupled thermal dynamics
 - Real-time estimation of:
