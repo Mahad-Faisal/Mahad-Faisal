@@ -6,7 +6,7 @@ Embedded Firmware Engineer | RTOS | Motor Control | Battery Estimation | Edge AI
 
 Computer Engineering student at Drexel University focused on low-level embedded systems, real-time firmware, motor-control platforms, embedded estimation algorithms, and safety-critical firmware architecture.
 
-Previously worked as an Embedded Firmware Engineer Co-op at Rheem Manufacturing developing inverter firmware, RTOS-based HVAC platforms, and embedded communication systems on Renesas RX/RA MCUs.
+Previously worked as an Embedded Firmware Engineer Co-op (Jan - Sep 25) at Rheem Manufacturing developing inverter firmware, RTOS-based HVAC platforms, and embedded communication systems on Renesas RX/RA MCUs.
 
 ---
 
