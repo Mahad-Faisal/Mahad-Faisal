@@ -1,98 +1,359 @@
 <h1 align="center">Mahad Faisal</h1>
 
 <h3 align="center">
-Embedded Firmware Engineer | RTOS | Motor Control | Battery Estimation | Edge AI
+Embedded Controls & Firmware Engineer | Real-Time Systems | Battery Intelligence | Power Electronics
 </h3>
 
-Computer Engineering student at Drexel University focused on low-level embedded systems, real-time firmware, motor-control platforms, embedded estimation algorithms, and safety-critical firmware architecture.
+<p align="center">
+Computer Engineering @ Drexel University · Graduating June 2027
+</p>
 
-Previously worked as an Embedded Firmware Engineer Co-op (Jan - Sep 25) at Rheem Manufacturing developing inverter firmware, RTOS-based HVAC platforms, and embedded communication systems on Renesas RX/RA MCUs.
+I build real-time embedded systems that connect **hardware, firmware, physical models, estimation, and control**.
+
+My work spans low-level MCU bring-up, RTOS architecture, motor-control platforms, battery-management systems, state estimation, model-based development, embedded AI, vehicle controls, and SIL/HIL validation.
+
+I previously worked as an **Embedded Firmware Engineer Co-op at Rheem Manufacturing**, where I developed production-oriented inverter firmware and commercial HVAC control software on Renesas RX platforms.
 
 ---
 
-## Current Work
+## Current Focus
 
-### Adaptive Battery Management System (RA8M1 + FreeRTOS)
-- Building an embedded Adaptive Dual Extended Kalman Filter (ADEKF) battery estimator on the Renesas EK-RA8M1 (Cortex-M85). Uses NN based innovation correction using MVE and CMSIS NN optimization.
-- Real-time electrothermal battery plant simulation running on ESP32 communicating over CAN 2.0
-- 5-state electrothermal 2RC ECM with coupled thermal dynamics
-- Real-time estimation of:
-  - State of Charge (SoC)
-  - RC polarization voltages
-  - thermal states
-  - adaptive parameter correction
-- Embedded telemetry + UART logging infrastructure for HIL validation
-- HPPC validation:
-  - 5.31 mV RMS @ 25°C
-  - 6.95 mV RMS @ 10°C
-  - 8.98 mV RMS @ 0°C
-- Corrected real UDDS validation:
-  - 10.94 mV raw RMS
-  - 10.21 mV bias-corrected RMS
+### Formula SAE Electric Vehicle — AMS, ECU & Vehicle Controls
+
+Developing firmware across the Formula SAE EV accumulator-management and vehicle-control stack using **STM32F7 + FreeRTOS**.
+
+Key work includes:
+
+- Custom accumulator-management firmware interfacing with **ADBMS6830** battery-monitor ICs
+- Pack voltage, temperature and current acquisition with freshness and coherency supervision
+- PEC validation, usable-cell masks and stale-data rejection
+- Debounced and latched battery safety faults
+- Adaptive battery **SoC / SoH / thermal-state estimation**
+- Multi-horizon **State-of-Power, DCL and CCL** calculation
+- Battery-aware torque authority and fail-zero power limiting
+- CAN communication between AMS, ECU, inverter and vehicle subsystems
+- CAN bus-off recovery, heartbeat monitoring and protected message generations
+- Current-model and residual-based diagnostics
+- Thermal-management and coolant-control firmware
+- SD-card telemetry and estimator diagnostic logging
+- Deterministic host/SIL test infrastructure with fault injection
+- GCC/Clang builds, ASan/UBSan and CI regression testing
+- Scheduler and CAN-authority stress testing
+
+The goal is not just to calculate battery state, but to safely propagate that information all the way into **real-time vehicle torque authority**.
+
+---
+
+## Embedded Battery Estimation & Edge AI Research
+
+### Adaptive Electrothermal Battery State Estimation
+**Renesas RA8M1 · Cortex-M85 · FreeRTOS · CAN · CMSIS-NN**
+
+Designed and implemented a physics-first embedded battery-estimation platform combining an adaptive electrothermal estimator with bounded learned voltage-residual correction.
+
+Core system:
+
+- 5-state electrothermal **2RC equivalent-circuit model**
+- Adaptive Extended Kalman Filter architecture
+- Online battery resistance adaptation
+- Adaptive measurement-noise estimation
+- SoC, polarization-voltage and thermal-state estimation
+- Deterministically bounded neural voltage-residual correction
+- Explicit authority limiting so learned corrections cannot dominate estimator behavior
+- Real-time CAN measurement interface
+- Dual-MCU hardware-in-the-loop validation
+- Cortex-M85 embedded deployment
+- FP32 and INT8 inference experiments using Arm CMSIS tooling
+
+Research validation includes:
+
+- **4,500 Monte Carlo validation cases**
+- zero estimator divergence in the evaluated campaign
+- zero covariance failures
+- zero learned-authority bound violations
+- measured embedded execution timing and memory usage
+
+A manuscript based on this work has been submitted to **IEEE Transactions on Transportation Electrification**:
+
+> **Bounded Neural Voltage-Residual Correction for Embedded Battery State Estimation in Electrified Vehicles**
+
+---
+
+## Renesas + Zephyr RTOS
+
+Contributing upstream-oriented Renesas support to **Zephyr RTOS**.
+
+### Renesas RA GPT Counter Driver
+
+Developed a hardware-validated Zephyr counter driver for the Renesas RA General PWM Timer.
+
+Implemented:
+
+- Zephyr counter-driver API integration
+- Renesas FSP GPT backend
+- Devicetree bindings
+- Kconfig integration
+- CMake integration
+- counter start/stop/read functionality
+- channel-alarm support
+- interrupt and callback handling
+- hardware validation on **EK-RA8M1**
+
+During hardware bring-up, diagnosed a Renesas FSP event-path difference where timer alarms arrived through the capture/compare path rather than the initially expected compare event.
+
+Also working with:
+
+- Zephyr devicetree
+- device-driver model
+- Kconfig
+- CAN / CAN-FD
+- PWM
+- ADC
+- CMSIS-DSP
+- Renesas RA8M1 / RA8P1 platforms
+
+---
+
+## Formula SAE Dashboard & DAQ
+
+Developing a next-generation vehicle dashboard/DAQ platform using:
+
+**Renesas RA8P1 + Zephyr + LVGL**
+
+Architecture includes:
+
+- canonical vehicle-state model
+- freshness-aware CAN data
+- acquisition → state → UI separation
+- thread-safe telemetry handling
+- LVGL dashboard rendering
+- fault-injection CLI
+- DAQ-oriented interfaces
+
+Previously implemented the dashboard using FreeRTOS/FSP before migrating the platform to Zephyr.
 
 ---
 
 ## Professional Embedded Firmware Experience
 
 ### Embedded Firmware Engineer Co-op — Rheem Manufacturing
-**Jan 2025 – Sep 2025**
+**January 2025 – September 2025**
 
-#### RX26T 3-Phase ACIM Inverter Firmware
-- Sole firmware developer on a safety-critical 3-phase ACIM inverter platform for HVAC furnace inducer control
-- Performed full low-level RX26T bring-up:
-  - clocks
-  - pin mux
-  - ADC
-  - PWM
-  - POEG
-  - deadtime
-  - linker memory restructuring
-- Reduced EMI-induced production resets from 45% → 1.5% through firmware mitigation and root-cause analysis of ADC polling instability under electrical noise
-- Integrated external PWM capture and RPM command translation logic
-- Ported Renesas FOC motor-control firmware across MCU families and adapted PMSM-oriented firmware for ACIM operation
-- Implemented thermistor-based IPM thermal monitoring using Steinhart-Hart characterization and interrupt-driven ADC acquisition
-- Developed dual-flash boot/fallback architecture for inverter recovery and field reliability
+### RX26T Three-Phase ACIM Inverter
 
-#### Commercial HVAC RTOS Migration
-- Led bare-metal → FreeRTOS migration for commercial HVAC control platforms
-- Re-architected superloop firmware into deterministic task/timer scheduling using semaphores and message passing
-- Tuned ISR latency, stack/heap usage, and task scheduling under real electrical-load conditions using Tracealyzer
-- Root-caused UART contention issues affecting motor operation
+Served as the primary firmware developer for a Renesas RX26T-based three-phase HVAC inverter platform.
 
-#### Embedded Communications + Internal Tooling
-- Implemented proprietary HVAC communication stacks over SCI UART with interrupt-driven callbacks and timing-sensitive transmit control
-- Worked on RAM optimization and reusable firmware templates for additional commercial platforms
-- Built internal Python tooling converting Excel datasets into firmware-ready bytestreams with CRC insertion, endian conversion, structured headers, and round-trip parsing support
+Worked across:
+
+- MCU clock and startup configuration
+- pin multiplexing
+- ADC acquisition
+- PWM generation
+- complementary outputs and deadtime
+- POEG hardware protection
+- linker and flash-memory configuration
+- interrupts and timers
+- PWM command measurement
+- motor-speed feedback
+- thermistor acquisition
+- watchdog handling
+- boot and fallback behavior
+
+Ported and integrated Renesas motor-control software across MCU platforms and validated gate drive, current sensing, PWM behavior and protection paths on hardware.
+
+### EMI / Reset Root-Cause Debugging
+
+Investigated ignition-sparker-induced inverter resets using post-failure UART instrumentation and hardware testing.
+
+Reduced reset occurrence from approximately:
+
+**45% → 1.5% through firmware mitigation**
+
+and ultimately to:
+
+**0% after hardware filtering**
+
+The investigation included interrupt behavior, ADC recovery, watchdog starvation and electrical-noise interaction with firmware execution.
+
+### Commercial HVAC FreeRTOS Migration
+
+Migrated a large Renesas RX66N commercial HVAC controller from a bare-metal superloop architecture to **FreeRTOS**.
+
+Worked on:
+
+- task decomposition
+- scheduler design
+- software timers
+- semaphores
+- message passing
+- ISR/task interaction
+- stack and heap sizing
+- timing analysis
+- UART resource contention
+- electrical-load validation
+
+The platform was being modernized to support future communications, connected-device and embedded-intelligence capabilities.
+
+### Embedded Communications & Tooling
+
+Also developed:
+
+- proprietary HVAC communications over SCI/UART and RS485
+- interrupt-driven communication interfaces
+- reusable communication integration templates
+- firmware parameter/bytestream generation tools
+- CRC insertion
+- endian conversion
+- structured binary headers
+- Excel ↔ firmware-data conversion
+- Python-based engineering utilities
 
 ---
 
-## Embedded Systems Interests
-- Zephyr RTOS
+## Model-Based Development & Controls
+
+Working with **MATLAB / Simulink** for embedded physical-system development.
+
+Current areas include:
+
+- electrothermal battery modeling
+- equivalent-circuit parameterization
+- HPPC-based characterization
+- adaptive state estimation
+- thermal observers
+- SoP / DCL / CCL calculation
+- Model-in-the-Loop validation
+- Software-in-the-Loop testing
+- Hardware-in-the-Loop testing
+- Embedded Coder workflows
+- generated-code integration with production C firmware
+
+---
+
+## Senior Design — Battery-Aware Grid-Forming Inverter
+
+Beginning development of a Renesas-based three-phase grid-forming inverter platform combining real-time power-electronics control with battery-state estimation.
+
+Planned architecture:
+
+**Battery → Bidirectional DC/DC → 48 V DC Link → Three-Phase Inverter**
+
+using:
+
+- **RA8T2** for fast inverter / converter control
+- **RA8M1** for battery estimation and higher-level energy management
+- CAN-FD communication between control domains
+- dq control and SVPWM
+- grid-forming / virtual-synchronous-machine concepts
+- battery State-of-Function constraints on inverter power dispatch
+
+The goal is to connect battery electrochemical capability directly to real-time power-electronics control.
+
+---
+
+## Areas of Depth
+
+### Embedded Firmware
+- Bare-metal C
 - FreeRTOS
-- Renesas RA/RX platforms
-- ADC/DMA pipelines
-- UART/SPI/I2C/CAN
-- Motor control and inverter firmware
-- Embedded signal processing
-- State estimation and Kalman filtering
-- Cortex-M85 / Arm Helium
-- CI/CD for embedded firmware
-- Safety-critical embedded systems
-- Hardware bring-up and low-level MCU initialization
+- Zephyr RTOS
+- interrupt-driven systems
+- MCU bring-up
+- memory / linker configuration
+- watchdog and fault handling
+- real-time scheduling
+
+### Embedded Hardware Interfaces
+- CAN / CAN-FD
+- UART / RS485
+- SPI
+- I2C
+- ADC
+- PWM
+- timers / capture
+- GPIO
+- hardware protection peripherals
+
+### Controls & Physical Systems
+- motor-control firmware
+- inverter systems
+- battery-management systems
+- Kalman filtering
+- electrothermal modeling
+- State-of-Power estimation
+- battery-aware vehicle control
+
+### Verification
+- MiL
+- SiL
+- HiL
+- deterministic fault injection
+- host-based embedded testing
+- sanitizers
+- CI/CD
+- hardware bring-up and instrumentation
+
+### Embedded AI
+- physics + ML hybrid architectures
+- bounded learned corrections
+- Cortex-M85 deployment
+- CMSIS-NN
+- INT8 inference
+- Arm Helium / MVE exploration
 
 ---
 
 ## Technologies
-C • C++ • Python • MATLAB • FreeRTOS • Zephyr • CAN 2.0 • Git • CMake • Ninja • Jenkins • Linux • Renesas e² studio
+
+**Languages**
+
+`C` `C++` `Python` `MATLAB`
+
+**Embedded / RTOS**
+
+`FreeRTOS` `Zephyr` `Renesas FSP` `STM32 HAL`
+
+**MCUs**
+
+`Renesas RX26T` `RX66N` `RA8M1` `RA8P1` `RA8T2` `STM32F767` `ESP32`
+
+**Interfaces**
+
+`CAN` `CAN-FD` `SPI` `I2C` `UART` `RS485` `ADC` `PWM`
+
+**Development**
+
+`Git` `CMake` `Ninja` `GCC` `Clang` `Jenkins` `Linux` `Renesas e² studio` `STM32CubeIDE`
+
+**Modeling / Validation**
+
+`MATLAB` `Simulink` `Embedded Coder` `SIL` `MIL` `HIL`
 
 ---
 
-## Current Open Source Work
-- Contributing to Zephyr RTOS
-- Improving Renesas RA8M1 board/sample support
-- Exploring Cortex-M85 CMSIS-DSP and Helium acceleration paths
-- Working on embedded CI/CD workflows and firmware validation infrastructure
+## What I Like Working On
+
+I am particularly interested in engineering problems that cross traditional boundaries:
+
+**physical system → sensors → MCU peripherals → RTOS → estimation → control → communications → system behavior**
+
+I enjoy going deep into individual technical areas, but I am equally interested in understanding and engineering the interfaces between them.
+
+Current interests include:
+
+- embedded controls
+- EV and battery systems
+- power electronics
+- safety-critical firmware
+- real-time operating systems
+- Renesas MCU platforms
+- state estimation
+- model-based development
+- embedded AI
+- firmware verification infrastructure
 
 ---
 
-📫 mahad.faisal@gmail.com
+## Contact
+
+**Email:** mahad.faisal@gmail.com
